@@ -20,11 +20,11 @@
 
                 if (IsUpperCase(asciiValue))
                 {
-                    encryptedValue = (asciiValue - 65 + key) % 26 + 65;
+                    encryptedValue = (asciiValue - firstUpperAscii + key) % alphabetSize + firstUpperAscii;
                 }
                 else if (IsLowerCase(asciiValue))
                 {
-                    encryptedValue = (asciiValue - 97 + key) % 26 + 97;
+                    encryptedValue = (asciiValue - firstLowerAscii + key) % alphabetSize + firstLowerAscii;
                 }
                 else
                 {
