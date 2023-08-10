@@ -1,5 +1,4 @@
-﻿
-namespace CsharpChallenges.Utils
+﻿namespace CsharpChallenges.Utils
 {
     internal class FileUtils
     {

@@ -1,7 +1,6 @@
 ﻿using CsharpChallenges.Utils;
-using System;
 
-namespace CsharpChallenges.Challenges
+namespace CsharpChallenges.Challenges.CaesarCipher
 {
     internal class CaesarCipher
     {
@@ -74,83 +73,14 @@ namespace CsharpChallenges.Challenges
             }
 
             string updatedFilePath = UpdateFilePath(filePath, option);
-            string processedText = (option == "1") ? Cipher(text, key) : Decipher(text, key);
+            string processedText = option == "1" ? Processing.Cipher(text, key) : Processing.Decipher(text, key);
             FileUtils.WriteFile(updatedFilePath, processedText);
         }
 
         private static string UpdateFilePath(string filePath, string option)
         {
-            string extension = (option == "1") ? "_cifrado.txt" : "_decifrado.txt";
+            string extension = option == "1" ? "_cifrado.txt" : "_decifrado.txt";
             return filePath.Replace(".txt", extension);
-        }
-
-        private static string Cipher(string text, int key)
-        {
-            string encryptedText = "";
-
-            foreach (char character in text)
-            {
-                int asciiValue = character;
-                int encryptedValue = 0;
-
-                if (IsUpperCase(asciiValue))
-                {
-                    encryptedValue = (asciiValue - 65 + key) % 26 + 65;
-                }
-                else if (IsLowerCase(asciiValue))
-                {
-                    encryptedValue = (asciiValue - 97 + key) % 26 + 97;
-                }
-                else
-                {
-                    encryptedValue = character;
-                }
-
-                char encryptedChar = (char)encryptedValue;
-                encryptedText += encryptedChar;
-            }
-
-
-            return encryptedText;
-        }
-
-        private static string Decipher(string text, int key)
-        {
-            string decryptedText = "";
-
-            foreach (char character in text)
-            {
-                int asciiValue = character;
-                int decryptedValue = 0;
-
-                if (IsUpperCase(asciiValue))
-                {
-                    decryptedValue = (asciiValue - 65 - key + 26) % 26 + 65;
-                }
-                else if (IsLowerCase(asciiValue))
-                {
-                    decryptedValue = (asciiValue - 97 - key + 26) % 26 + 97;
-                }
-                else
-                {
-                    decryptedValue = character;
-                }
-
-                char decryptedChar = (char)decryptedValue;
-                decryptedText += decryptedChar;
-            }
-
-            return decryptedText;
-        }
-
-        private static bool IsUpperCase(int ascii)
-        {
-            return ascii is >= 65 and <= 91;
-        }
-
-        private static bool IsLowerCase(int ascii)
-        {
-            return ascii is >= 97 and <= 122;
         }
     }
 }
