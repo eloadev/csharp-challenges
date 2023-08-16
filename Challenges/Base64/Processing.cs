@@ -5,7 +5,7 @@ namespace CsharpChallenges.Challenges.Base64
     internal class Processing
     {
         const string Base64Table = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-        static List<string> Base64TableList = Base64Table.Select(c => c.ToString()).ToList();
+        static readonly List<string> Base64TableList = Base64Table.Select(c => c.ToString()).ToList();
 
         public static string Encode(string text)
         {
